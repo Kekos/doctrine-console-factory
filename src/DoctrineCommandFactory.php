@@ -18,7 +18,7 @@ final class DoctrineCommandFactory
     /** @var ConfigurationLoader|null */
     private $configuration_loader;
 
-    public function __construct(EntityManager $entity_manager, ?ConfigurationLoader $configuration_loader = null)
+    public function __construct(EntityManager $entity_manager, ?ConfigurationLoader $configuration_loader)
     {
         $this->entity_manager = $entity_manager;
         $this->configuration_loader = $configuration_loader;
