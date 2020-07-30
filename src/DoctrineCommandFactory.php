@@ -9,7 +9,10 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Kekos\DoctrineConsoleFactory\Discovery\MigrationsDiscovery;
 use Kekos\DoctrineConsoleFactory\Discovery\OrmDiscovery;
+use RuntimeException;
 use Symfony\Component\Console\Application;
+
+use function sprintf;
 
 final class DoctrineCommandFactory
 {
@@ -51,6 +54,15 @@ final class DoctrineCommandFactory
 
         if (empty($command_classes)) {
             return;
+        }
+
+        if ($this->configuration_loader === null) {
+            throw new RuntimeException(
+                sprintf(
+                    'The Doctrine Migrations commands requires you to pass an instance of %s.',
+                    ConfigurationLoader::class
+                )
+            );
         }
 
         $migrations_dependency_factory = DependencyFactory::fromEntityManager(
