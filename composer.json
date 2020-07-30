@@ -1,0 +1,25 @@
+{
+    "name": "kekos/doctrine-console-factory",
+    "description": "Helper for adding Doctrine ORM and Migrations console commands to your own Symfony Console application",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christoffer Lindahl Hassel",
+            "email": "christoffer@kekos.se"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "symfony/console": "^5.0"
+    },
+    "require-dev": {
+        "doctrine/migrations": "^3.0",
+        "doctrine/orm": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kekos\\DoctrineConsoleFactory\\": "src/"
+        }
+    }
+}
