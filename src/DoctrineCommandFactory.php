@@ -8,10 +8,10 @@ use Doctrine\Migrations\DependencyFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Kekos\DoctrineConsoleFactory\Discovery\MigrationsDiscovery;
-use Kekos\DoctrineConsoleFactory\Discovery\OrmDiscovery;
 use RuntimeException;
 use Symfony\Component\Console\Application;
 
+use function class_exists;
 use function sprintf;
 
 final class DoctrineCommandFactory
@@ -35,17 +35,13 @@ final class DoctrineCommandFactory
 
     private function addOrmCommands(Application $application): void
     {
-        $command_classes = OrmDiscovery::getCommandClasses();
-
-        if (empty($command_classes)) {
+        if (!class_exists(ConsoleRunner::class)) {
             return;
         }
 
         $application->setHelperSet(ConsoleRunner::createHelperSet($this->entity_manager));
 
-        foreach ($command_classes as $command_class) {
-            $application->add(new $command_class());
-        }
+        ConsoleRunner::addCommands($application);
     }
 
     private function addMigrationsCommands(Application $application): void
