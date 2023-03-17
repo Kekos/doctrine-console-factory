@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^7.2 || ~8.0.0 || ~8.1.0",
-        "symfony/console": "^5.0"
+        "symfony/console": "^5.0 || ^6.0"
     },
     "require-dev": {
         "doctrine/migrations": "^3.0",
