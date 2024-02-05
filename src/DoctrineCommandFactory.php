@@ -7,6 +7,7 @@ use Doctrine\Migrations\Configuration\Migration\ConfigurationLoader;
 use Doctrine\Migrations\DependencyFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Kekos\DoctrineConsoleFactory\Discovery\MigrationsDiscovery;
 use RuntimeException;
 use Symfony\Component\Console\Application;
@@ -39,9 +40,7 @@ final class DoctrineCommandFactory
             return;
         }
 
-        $application->setHelperSet(ConsoleRunner::createHelperSet($this->entity_manager));
-
-        ConsoleRunner::addCommands($application);
+        ConsoleRunner::addCommands($application, new SingleManagerProvider($this->entity_manager));
     }
 
     private function addMigrationsCommands(Application $application): void

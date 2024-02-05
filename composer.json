@@ -15,7 +15,11 @@
     },
     "require-dev": {
         "doctrine/migrations": "^3.0",
-        "doctrine/orm": "^2.7"
+        "doctrine/orm": "^3.0"
+    },
+    "conflict": {
+        "doctrine/migrations": "<3",
+        "doctrine/orm": "<3"
     },
     "autoload": {
         "psr-4": {
