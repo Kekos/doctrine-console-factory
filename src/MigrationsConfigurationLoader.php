@@ -20,13 +20,9 @@ final class MigrationsConfigurationLoader implements ConfigurationLoader
         'custom_template' => false,
     ];
 
-    /** @var array */
-    private $settings;
-
-    public function __construct(array $settings)
-    {
-        $this->settings = $settings;
-
+    public function __construct(
+        private readonly array $settings,
+    ) {
         foreach ($settings as $setting => $value) {
             if (!isset(self::ALLOWED_CONFIGURATION_KEYS[$setting])) {
                 throw UnknownConfigurationValue::new($setting, $value);

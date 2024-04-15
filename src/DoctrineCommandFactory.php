@@ -17,15 +17,10 @@ use function sprintf;
 
 final class DoctrineCommandFactory
 {
-    /** @var EntityManager */
-    private $entity_manager;
-    /** @var ConfigurationLoader|null */
-    private $configuration_loader;
-
-    public function __construct(EntityManager $entity_manager, ?ConfigurationLoader $configuration_loader)
-    {
-        $this->entity_manager = $entity_manager;
-        $this->configuration_loader = $configuration_loader;
+    public function __construct(
+        private readonly EntityManager $entity_manager,
+        private readonly ?ConfigurationLoader $configuration_loader,
+    ) {
     }
 
     public function addCommands(Application $application): void

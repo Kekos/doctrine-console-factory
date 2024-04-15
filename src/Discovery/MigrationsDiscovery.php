@@ -8,7 +8,7 @@ use function class_exists;
 
 final class MigrationsDiscovery implements PackageDiscoveryInterface
 {
-    private static $class_names = [
+    private static array $class_names = [
         MigrationsConsole\CurrentCommand::class,
         MigrationsConsole\DumpSchemaCommand::class,
         MigrationsConsole\ExecuteCommand::class,
